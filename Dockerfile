@@ -82,6 +82,6 @@ RUN set -ex && \
     #add timezone
     RUN apk update && apk add tzdata \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \ 
-    && echo "Asia/Shanghai" > /etc/timezone
+    && echo "Asia/Shanghai" > /etc/timezone \
     && apk del tzdata
 # EOF
