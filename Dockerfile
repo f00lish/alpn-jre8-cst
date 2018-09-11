@@ -18,6 +18,14 @@ ENV JAVA_VERSION_MAJOR=8 \
     GLIBC_VERSION=2.27-r0 \
     LANG=C.UTF-8
 
+ #add timezone
+  RUN apk update && apk add tzdata \
+  && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \ 
+  && echo "Asia/Shanghai" > /etc/timezone \
+  && apk del tzdata
+
+  ADD fonts/* /usr/share/fonts/
+
 # do all in one step
 RUN set -ex && \
     [[ ${JAVA_VERSION_MAJOR} != 7 ]] || ( echo >&2 'Oracle no longer publishes JAVA7 packages' && exit 1 ) && \
@@ -79,9 +87,4 @@ RUN set -ex && \
     ln -sf /etc/ssl/certs/java/cacerts $JAVA_HOME/jre/lib/security/cacerts && \
     echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf
     
-    #add timezone
-    RUN apk update && apk add tzdata \
-    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \ 
-    && echo "Asia/Shanghai" > /etc/timezone \
-    && apk del tzdata
 # EOF
