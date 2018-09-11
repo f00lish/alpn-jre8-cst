@@ -28,7 +28,7 @@ ENV JAVA_VERSION_MAJOR=8 \
 
   RUN apk add fontconfig mkfontscale mkfontdir && \
 
-      mkfontscale && mkfontdir && fc-cache &&
+      mkfontscale && mkfontdir && fc-cache 
 
 # do all in one step
 RUN set -ex && \
