@@ -43,7 +43,7 @@ RUN set -ex && \
     /usr/glibc-compat/sbin/ldconfig /lib /usr/glibc-compat/lib && \
     mkdir /opt && \
     curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" -o /tmp/java.tar.gz \
-https://github.com/frekele/oracle-java/releases/download/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}/{JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz && \
+https://github.com/frekele/oracle-java/releases/download/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}/${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz && \
     gunzip /tmp/java.tar.gz && \
     tar -C /opt -xf /tmp/java.tar && \
     ln -s /opt/jdk1.${JAVA_VERSION_MAJOR}.0_${JAVA_VERSION_MINOR} /opt/jdk && \
