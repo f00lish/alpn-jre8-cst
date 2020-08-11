@@ -89,6 +89,6 @@ https://github.com/frekele/oracle-java/releases/download/${JAVA_VERSION_MAJOR}u$
     echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf
 
 # add sw-agent
-ADD sw-agent/* /usr/share/sw-agent/
+ADD sw-agent.zip /usr/share/
     
 # EOF
