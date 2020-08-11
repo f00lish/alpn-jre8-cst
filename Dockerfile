@@ -87,5 +87,8 @@ https://github.com/frekele/oracle-java/releases/download/${JAVA_VERSION_MAJOR}u$
            /tmp/* /var/cache/apk/* && \
     ln -sf /etc/ssl/certs/java/cacerts $JAVA_HOME/jre/lib/security/cacerts && \
     echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf
+
+# add sw-agent
+ADD sw-agent/* /usr/share/sw-agent/
     
 # EOF
