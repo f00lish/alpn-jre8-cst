@@ -1,5 +1,5 @@
 # AlpineLinux with a glibc-2.27-r0 and Oracle Java 8
-FROM alpine:20200917
+FROM alpine:3.8
 
 MAINTAINER f00lish <f00lish@qq.com>
 # thanks to Vladimir Krivosheev <develar@gmail.com> aka @develar for smaller image
@@ -41,7 +41,7 @@ RUN set -ex && \
     ( /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 C.UTF-8 || true ) && \
     echo "export LANG=C.UTF-8" > /etc/profile.d/locale.sh && \
     /usr/glibc-compat/sbin/ldconfig /lib /usr/glibc-compat/lib && \
-  #  mkdir /opt && \
+    mkdir /opt && \
     curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" -o /tmp/java.tar.gz \
 https://github.com/frekele/oracle-java/releases/download/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}/${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz && \
     gunzip /tmp/java.tar.gz && \
