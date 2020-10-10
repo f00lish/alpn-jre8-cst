@@ -47,8 +47,6 @@ https://github.com/frekele/oracle-java/releases/download/${JAVA_VERSION_MAJOR}u$
     gunzip /tmp/java.tar.gz && \
     tar -C /opt -xf /tmp/java.tar && \
     ln -s /opt/jdk1.${JAVA_VERSION_MAJOR}.0_${JAVA_VERSION_MINOR} /opt/jdk && \
-    find /opt/jdk/ -maxdepth 1 -mindepth 1 | grep -v jre | xargs rm -rf && \
-    cd /opt/jdk/ && ln -s ./jre/bin ./bin && \
     if [ "${JAVA_JCE}" == "unlimited" ]; then echo "Installing Unlimited JCE policy" && \
       curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" -o /tmp/jce_policy-${JAVA_VERSION_MAJOR}.zip \
         http://download.oracle.com/otn-pub/java/jce/${JAVA_VERSION_MAJOR}/jce_policy-${JAVA_VERSION_MAJOR}.zip && \
@@ -57,34 +55,7 @@ https://github.com/frekele/oracle-java/releases/download/${JAVA_VERSION_MAJOR}u$
     fi && \
     sed -i s/#networkaddress.cache.ttl=-1/networkaddress.cache.ttl=10/ $JAVA_HOME/jre/lib/security/java.security && \
     apk del curl glibc-i18n && \
-    rm -rf /opt/jdk/jre/plugin \
-           /opt/jdk/jre/bin/javaws \
-           /opt/jdk/jre/bin/jjs \
-           /opt/jdk/jre/bin/orbd \
-           /opt/jdk/jre/bin/pack200 \
-           /opt/jdk/jre/bin/policytool \
-           /opt/jdk/jre/bin/rmid \
-           /opt/jdk/jre/bin/rmiregistry \
-           /opt/jdk/jre/bin/servertool \
-           /opt/jdk/jre/bin/tnameserv \
-           /opt/jdk/jre/bin/unpack200 \
-           /opt/jdk/jre/lib/javaws.jar \
-           /opt/jdk/jre/lib/deploy* \
-           /opt/jdk/jre/lib/desktop \
-           /opt/jdk/jre/lib/*javafx* \
-           /opt/jdk/jre/lib/*jfx* \
-           /opt/jdk/jre/lib/amd64/libdecora_sse.so \
-           /opt/jdk/jre/lib/amd64/libprism_*.so \
-           /opt/jdk/jre/lib/amd64/libfxplugins.so \
-           /opt/jdk/jre/lib/amd64/libglass.so \
-           /opt/jdk/jre/lib/amd64/libgstreamer-lite.so \
-           /opt/jdk/jre/lib/amd64/libjavafx*.so \
-           /opt/jdk/jre/lib/amd64/libjfx*.so \
-           /opt/jdk/jre/lib/ext/jfxrt.jar \
-           /opt/jdk/jre/lib/ext/nashorn.jar \
-           /opt/jdk/jre/lib/oblique-fonts \
-           /opt/jdk/jre/lib/plugin.jar \
-           /tmp/* /var/cache/apk/* && \
+    rm -rf /tmp/* /var/cache/apk/* && \
     ln -sf /etc/ssl/certs/java/cacerts $JAVA_HOME/jre/lib/security/cacerts && \
     echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf
     
