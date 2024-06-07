@@ -26,9 +26,8 @@ ENV JAVA_VERSION_MAJOR=8 \
 
   ADD fonts/* /usr/share/fonts/
 
-  RUN apk add fontconfig mkfontscale mkfontdir && \
-
-      mkfontscale && mkfontdir && fc-cache 
+  RUN apk add fontconfig mkfontscale mkfontdir  \ 
+           && mkfontscale && mkfontdir && fc-cache 
 
 # do all in one step
 RUN set -ex && \
