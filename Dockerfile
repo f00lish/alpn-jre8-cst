@@ -90,5 +90,15 @@ RUN set -ex && \
            /tmp/* /var/cache/apk/* && \
     ln -sf /etc/ssl/certs/java/cacerts $JAVA_HOME/jre/lib/security/cacerts && \
     echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf
-    
+# 更新包列表并安装 Tesseract OCR 及其依赖
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        tesseract-ocr-chi-sim \
+        tesseract-ocr-eng \
+        tesseract-ocr-osd \
+        tesseract-ocr \
+        libtesseract-dev \
+        libleptonica-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 # EOF
